@@ -29,19 +29,18 @@ galleryConteiner.addEventListener(`click`, onGalleryConteinerClick)
 
 function onGalleryConteinerClick(event) {
     event.preventDefault();
-    if (event.target.closest('.gallery__link')) {
-        return;
-    }
+  if (event.target.closest('.gallery__link')) {
     const instance = basicLightbox.create(
-            `<img src="${event.target.closest('img').dataset.source}" width="800" height="600">`);
-  instance.show();
-
-  const onKeydownEsc = (event) => {
-    console.log(event.code);
-    if (event.code === "Escape") {
-      instance.close();
-    }
+      `<img src="${event.target.closest('img').dataset.source}" width="800" height="600">`
+    );
+    instance.show();
+  
+    const onKeydownEsc = (event) => {
+      console.log(event.code);
+      if (event.code === "Escape") {
+        instance.close();
+      }
+    };
+    document.addEventListener("keydown", onKeydownEsc);
   };
-
-  window.addEventListener("keydown", onKeydownEsc);
 }
